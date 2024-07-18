@@ -23,8 +23,8 @@
           nixos = inputs.nixpkgs.lib.nixosSystem {
             inherit system;
             modules = [
-              ./configuration.nix
-              ./nspawn-tarball.nix
+              ./modules/configuration.nix
+              ./modules/nspawn-tarball.nix
             ];
           };
         in
