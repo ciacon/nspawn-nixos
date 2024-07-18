@@ -8,7 +8,7 @@ GNU/Linux that has `systemd` using `machinectl`.
 You don't need `nix` or NixOS to fetch and run the image:
 
 ```sh
-machinectl pull-tar https://github.com/tfc/nspawn-nixos/releases/download/v1.0/nixos-system-x86_64-linux.tar.xz nixos --verify=no
+machinectl pull-tar https://github.com/ciacon/nspawn-nixos/releases/latest/download/nixos-system-x86_64-linux.tar.xz nixos --verify=no
 machinectl start nixos
 
 # Set root password
