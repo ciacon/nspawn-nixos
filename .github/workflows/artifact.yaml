@@ -7,12 +7,32 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@main
-      - uses: DeterminateSystems/magic-nix-cache-action@main
-      - run: nix build
-      - uses: actions/upload-artifact@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Nix Installer
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Nix Build
+        run: nix build
+
+      - name: Generate SHA256
+        run: |
+          sha256sum result/tarball/nixos-system-x86_64-linux.tar.xz > nixos-system-x86_64-linux.tar.xz.sha256
+
+      - name: Upload tar.xz
+        uses: actions/upload-artifact@v4
         with:
           name: nixos-system-x86_64-linux.tar.xz
           path: result/tarball/nixos-system-x86_64-linux.tar.xz
+
+      - name: Upload SHA256
+        uses: actions/upload-artifact@v4
+        with:
+          name: nixos-system-x86_64-linux.tar.xz.sha256
+          path: nixos-system-x86_64-linux.tar.xz.sha256
