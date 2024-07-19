@@ -23,7 +23,7 @@ jobs:
 
       - name: Generate SHA256
         run: |
-          sha256sum result/tarball/nixos-system-x86_64-linux.tar.xz > nixos-system-x86_64-linux.tar.xz.sha256
+          sha256sum result/tarball/nixos-system-x86_64-linux.tar.xz | tee nixos-system-x86_64-linux.tar.xz.sha256
 
       - name: Upload tar.xz
         uses: actions/upload-artifact@v4
